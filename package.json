@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode development",
-    "dev:stag": "vite --mode staging",
-    "dev:prod": "vite --mode production",
-    "dev:dev": "vite --mode development",
+    "dev": "vite --mode development --port 5174",
     "build": "vite build",
+    "start": "vite preview --host 0.0.0.0 --port 5174",
+    "start:stag": "vite preview --mode staging --port 5174",
+    "start:prod": "vite preview --mode production --port 5174",
+    "build:dev": "vite build --mode development",
     "build:stag": "vite build --mode staging",
     "build:prod": "vite build --mode production",
-    "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --port 5174"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
