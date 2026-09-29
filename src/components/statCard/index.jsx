@@ -6,15 +6,16 @@ const StatCard = ({ title, value, icon, color, trend, onClick }) => {
             elevation={0}
             onClick={onClick}
             sx={{
-                p: { xs: 2, sm: 2.5, md: 3, lg: 3 },
-                borderRadius: 12,
+                p: { xs: 1.5, sm: 2, md: 2.5 },
+                borderRadius: { xs: "10px", sm: "12px" },
                 background: color,
                 color: "white",
                 width: "100%",
                 maxWidth: "100%",
                 minWidth: 0,
                 boxSizing: "border-box",
-                height: { xs: 100, sm: 120, md: 160, lg: 180, xl: 200 },
+                minHeight: { xs: 90, sm: 110, md: 130 },
+                height: "100%",
                 cursor: onClick ? "pointer" : "default",
                 transition: "all 0.3s ease",
                 display: "flex",
@@ -27,18 +28,35 @@ const StatCard = ({ title, value, icon, color, trend, onClick }) => {
                 } : {},
             }}
         >
-            <Box display="flex" justifyContent="space-between" alignItems="flex-start">
-                <Typography fontSize={{ xs: 12, sm: 14, md: 15, lg: 16 }} fontWeight={500} opacity={0.9}>
+            <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={1} minWidth={0}>
+                <Typography
+                    fontSize={{ xs: 11, sm: 13, md: 14 }}
+                    fontWeight={500}
+                    opacity={0.9}
+                    sx={{ wordBreak: "break-word", overflowWrap: "anywhere", minWidth: 0, flex: 1 }}
+                >
                     {title}
                 </Typography>
-                {icon}
+                <Box sx={{ flexShrink: 0, display: "flex" }}>
+                    {icon}
+                </Box>
             </Box>
-            <Box>
-                <Typography fontSize={{ xs: 20, sm: 24, md: 26, lg: 28 }} fontWeight={700}>
+            <Box mt={1} minWidth={0}>
+                <Typography
+                    fontSize={{ xs: 18, sm: 22, md: 24, lg: 26 }}
+                    fontWeight={700}
+                    sx={{ wordBreak: "break-word", overflowWrap: "anywhere" }}
+                >
                     {value}
                 </Typography>
                 {trend && (
-                    <Typography fontSize={{ xs: 10, sm: 11, md: 12, lg: 13 }} fontWeight={500} opacity={0.8} mt={0.5}>
+                    <Typography
+                        fontSize={{ xs: 9.5, sm: 10.5, md: 11.5 }}
+                        fontWeight={500}
+                        opacity={0.8}
+                        mt={0.3}
+                        sx={{ wordBreak: "break-all", overflowWrap: "anywhere" }}
+                    >
                         {trend}
                     </Typography>
                 )}

@@ -51,5 +51,7 @@ export const endpoints = {
     verifyIncompleteDeal: "deal/admin/:dealId/verify-incomplete",   
     // upload
     upload: "upload/presigned-url",
+    // credits
+    creditPricing: "credits/pricing",
 }
 

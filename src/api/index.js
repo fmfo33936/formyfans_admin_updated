@@ -1,4 +1,5 @@
 import axios from "axios";
+import useUserStore from "../zustand/userUserStore";
 
 // export const baseUrl =
 //   "https://formyfansonly-backend-staging-a27a863fb6c8.herokuapp.com/api/";
@@ -6,7 +7,10 @@ import axios from "axios";
 export const baseUrl = `${import.meta.env.VITE_BASE_URL}/api/`;
 
 const api = async (path, params, method, isMultipart = false) => {
-  let userToken = localStorage.getItem("token");
+  let userToken = localStorage.getItem("token") || useUserStore.getState()?.token;
+  if (typeof userToken === "string") {
+    userToken = userToken.replace(/^"(.*)"$/, "$1").trim();
+  }
 
   // Handle query parameters for GET requests
   let url = path;

@@ -4,6 +4,7 @@ export const adminMenuItems = [
     { label: "Orders", path: "/app/orders" },
     { label: "Creators", path: "/app/creators" },
     { label: "Subscription", path: "/app/subscription" },
+    { label: "Credit Pricing", path: "/app/credit-pricing" },
     { label: "Deals", path: "/app/deals" },
     { label: "Campaigns", path: "/app/campaigns" },
     { label: "Campaign Objective", path: "/app/campaign-objective" },

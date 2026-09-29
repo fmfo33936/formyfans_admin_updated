@@ -6,6 +6,7 @@ import OrderDetail from "../screens/adminPannel/orderDetail";
 // import AddProducts from "../screens/adminPannel/addProducts";
 // import Notifications from "../screens/settings/notifications/notifications";
 import Subscription from "../screens/adminPannel/subscription";
+import CreditPricing from "../screens/adminPannel/creditPricing";
 import CampaignObjective from "../screens/adminPannel/campaignObjective";
 import CampaignCategory from "../screens/adminPannel/campaignCategory";
 import Campaigns from "../screens/adminPannel/campaigns";
@@ -76,6 +77,24 @@ const APP_LAYOUT = [
     name: "subscription",
     path: "/app/subscription",
     component: <Subscription />,
+  },
+  {
+    id: 13,
+    name: "credit-pricing",
+    path: "/app/credit-pricing",
+    component: <CreditPricing />,
+  },
+  {
+    id: 14,
+    name: "credits-pricing-alias",
+    path: "/app/credits/pricing",
+    component: <CreditPricing />,
+  },
+  {
+    id: 15,
+    name: "credits-alias",
+    path: "/app/credits",
+    component: <CreditPricing />,
   },
   {
     id: 10,

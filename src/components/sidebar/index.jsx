@@ -14,6 +14,7 @@ import FlagIcon from "@mui/icons-material/Flag";
 import CategoryIcon from "@mui/icons-material/Category";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import PaidIcon from "@mui/icons-material/Paid";
 
 const Sidebar = ({ menuItems, activeItem, collapsed = false, onToggle }) => {
     const navigate = useNavigate();
@@ -36,6 +37,10 @@ const Sidebar = ({ menuItems, activeItem, collapsed = false, onToggle }) => {
                 return <PersonAddIcon sx={{ fontSize: 18 }} />;
             case "subscription":
                 return <SubscriptionsIcon sx={{ fontSize: 18 }} />;
+            case "credit pricing":
+            case "credits":
+            case "credit":
+                return <PaidIcon sx={{ fontSize: 18 }} />;
             case "deals":
                 return <HandshakeIcon sx={{ fontSize: 18 }} />;
             case "campaigns":
