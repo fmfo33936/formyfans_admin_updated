@@ -39,6 +39,7 @@ import PsychologyIcon from "@mui/icons-material/Psychology";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+import SecurityIcon from "@mui/icons-material/Security";
 
 import Header from "../../../components/header";
 import Sidebar from "../../../components/sidebar";
@@ -56,6 +57,7 @@ const emptyForm = () => ({
     imageReservationCredits: "",
     videoReservationCredits: "",
     videoEditReservationCredits: "",
+    reservationSafetyMultiplier: "2",
 });
 
 const CreditPricing = () => {
@@ -105,6 +107,10 @@ const CreditPricing = () => {
                 data.videoEditReservationCredits !== undefined
                     ? String(data.videoEditReservationCredits)
                     : "",
+            reservationSafetyMultiplier:
+                data.reservationSafetyMultiplier !== undefined
+                    ? String(data.reservationSafetyMultiplier)
+                    : "2",
         });
         setIsEditDialogOpen(true);
     };
@@ -134,9 +140,15 @@ const CreditPricing = () => {
         const imageNum = Number(formData.imageReservationCredits);
         const videoNum = Number(formData.videoReservationCredits);
         const editNum = Number(formData.videoEditReservationCredits);
+        const safetyMultiplierNum = formData.reservationSafetyMultiplier !== "" ? Number(formData.reservationSafetyMultiplier) : 2;
 
         if (Number.isNaN(priceNum) || priceNum <= 0) {
             toast.error("Please enter a valid price per credit");
+            return;
+        }
+
+        if (Number.isNaN(safetyMultiplierNum) || safetyMultiplierNum < 1 || safetyMultiplierNum > 10) {
+            toast.error("Reservation Safety Multiplier must be between 1 and 10");
             return;
         }
 
@@ -148,6 +160,7 @@ const CreditPricing = () => {
             imageReservationCredits: Number.isFinite(imageNum) ? imageNum : 10,
             videoReservationCredits: Number.isFinite(videoNum) ? videoNum : 2,
             videoEditReservationCredits: Number.isFinite(editNum) ? editNum : 60,
+            reservationSafetyMultiplier: safetyMultiplierNum,
         };
 
         const res = await updateCreditPricing(payload);
@@ -178,6 +191,12 @@ const CreditPricing = () => {
     };
 
     const rateTableData = [
+        {
+            service: "Reservation Safety Multiplier",
+            apiKey: "reservationSafetyMultiplier",
+            icon: <SecurityIcon sx={{ color: "#10B981", fontSize: 20 }} />,
+            value: data.reservationSafetyMultiplier !== undefined ? `${data.reservationSafetyMultiplier}x` : "2x",
+        },
         {
             service: "Image Reservation Credits",
             apiKey: "imageReservationCredits",
@@ -950,6 +969,24 @@ const CreditPricing = () => {
                                 backgroundColor="#fff"
                                 borderRadius="10px"
                                 placeholder="60"
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <Typography fontSize={13} fontWeight={600} color="#333333" mb={0.5}>
+                                Reservation Safety Multiplier (1 – 10)
+                            </Typography>
+                            <CustomInput
+                                margin="dense"
+                                name="reservationSafetyMultiplier"
+                                type="number"
+                                value={formData.reservationSafetyMultiplier}
+                                onChange={handleInputChange}
+                                fullWidth
+                                backgroundColor="#fff"
+                                borderRadius="10px"
+                                placeholder="2"
+                                inputProps={{ min: 1, max: 10, step: 1 }}
                             />
                         </Grid>
                     </Grid>
